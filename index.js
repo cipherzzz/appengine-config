@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Prepares app engine app.yaml files with necessary env variables.
  * I really think there should be a better way to do this...
@@ -16,8 +18,8 @@ function arrayPush (value, memo) {
 // Create API for app
 app
   .version('1.0.0')
-  .option('-s, --source [path]', 'Source file', 'app.yaml')
-  .option('-o, --output [path]', 'Output file', 'app.yaml')
+  .option('-s, --source [path]', 'Source file', '/app.yaml')
+  .option('-o, --output [path]', 'Output file', '/app.yaml')
   .option('-e, --env [value]', 'Enviroment variable', arrayPush, [])
   .parse(process.argv)
 

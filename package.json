@@ -2,11 +2,13 @@
   "name": "appengine-config",
   "version": "1.0.0",
   "description": "Generate an app.yaml config from templates and inject environment variables. Useful for creating environment specific configs at deploy time.",
-  "main": "index.js",
   "scripts": {
     "preversion": "git add .",
     "postversion": "git push && git push --tags && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "appengine-config": "./index.js"
   },
   "keywords": [
     "gae",
