@@ -8,6 +8,8 @@
 const app = require('commander')
 const yaml = require('node-yaml')
 const rimraf = require('rimraf')
+const colors = require('colors')
+const pkg = require('./package.json')
 
 // Array helper
 function arrayPush (value, memo) {
@@ -17,7 +19,7 @@ function arrayPush (value, memo) {
 
 // Create API for app
 app
-  .version('1.0.0')
+  .version(pkg.version)
   .option('-s, --source [path]', 'Source file', '/app.yaml')
   .option('-o, --output [path]', 'Output file', '/app.yaml')
   .option('-e, --env [value]', 'Enviroment variable', arrayPush, [])
@@ -43,5 +45,7 @@ yaml.readPromise(app.source).then(data => {
   // Write our changes
   return yaml.writePromise(app.output, data)
 }).then(response => {
-  console.log(`Added ${count} environment variables to ${app.output}`)
-}).catch(console.error)
+  console.log(colors.green(`Added ${count} environment variables to ${app.output}`))
+}).catch(error => {
+  console.error(colors.red(error.message))
+})

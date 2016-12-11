@@ -5,7 +5,7 @@
   "scripts": {
     "preversion": "git add .",
     "postversion": "git push && git push --tags && npm publish",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: lol, we don't do tests here\" && exit 1"
   },
   "bin": {
     "appengine-config": "./index.js"
@@ -24,7 +24,15 @@
   ],
   "author": "Hayden Gascoigne",
   "license": "ISC",
+  "engines": {
+    "node": ">=5.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hgascoigne/appengine-config.git"
+  },
   "dependencies": {
+    "colors": "^1.1.2",
     "commander": "^2.9.0",
     "node-yaml": "^3.0.3",
     "rimraf": "^2.5.4"
