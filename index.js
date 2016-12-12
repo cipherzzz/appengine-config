@@ -9,6 +9,7 @@ const app = require('commander')
 const yaml = require('node-yaml')
 const rimraf = require('rimraf')
 const colors = require('colors')
+const path = require('path')
 const pkg = require('./package.json')
 
 // Array helper
@@ -29,10 +30,10 @@ app
 let count = 0
 
 // Clear any existing output
-rimraf.sync(app.output)
+rimraf.sync(path.join(process.cwd(), app.output))
 
 // Read existing YAML file
-yaml.readPromise(app.source).then(data => {
+yaml.read(path.join(process.cwd(), app.source)).then(data => {
   if (!data.env_variables && app.env.length > 0) data.env_variables = {}
 
   // Add specified envs to yaml
@@ -43,7 +44,7 @@ yaml.readPromise(app.source).then(data => {
   })
 
   // Write our changes
-  return yaml.writePromise(app.output, data)
+  return yaml.write(path.join(process.cwd(), app.output), data)
 }).then(response => {
   console.log(colors.green(`Added ${count} environment variables to ${app.output}`))
 }).catch(error => {
