@@ -10,7 +10,7 @@ const yaml = require('node-yaml')
 const rimraf = require('rimraf')
 const colors = require('colors')
 const path = require('path')
-const pkg = require('./package.json')
+require('pkginfo')(module)
 
 // Array helper
 function arrayPush (value, memo) {
@@ -20,7 +20,7 @@ function arrayPush (value, memo) {
 
 // Create API for app
 app
-  .version(pkg.version)
+  .version(module.exports.version)
   .option('-s, --source [path]', 'Source file', '/app.yaml')
   .option('-o, --output [path]', 'Output file', '/app.yaml')
   .option('-e, --env [value]', 'Enviroment variable', arrayPush, [])
