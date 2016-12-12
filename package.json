@@ -1,6 +1,6 @@
 {
   "name": "appengine-config",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generate an app.yaml config from templates and inject environment variables. Useful for creating environment specific configs at deploy time.",
   "scripts": {
     "preversion": "git add .",
